@@ -1,3 +1,6 @@
 flask
-numpy
-scikit-learn
+pydantic
+fastapi
+boto3
+pickle
+

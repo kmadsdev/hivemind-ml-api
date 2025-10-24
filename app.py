@@ -2,14 +2,14 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import boto3, pickle, os
 
-BUCKET = "your-bucket"
-MODEL_KEY = "models/model.pkl"
+BUCKET = "hivemind-ml-models"
+MODEL_KEY = "model.pkl"
 LOCAL_MODEL_PATH = "model.pkl"
 
-# def download_model():
-#     if not os.path.exists(LOCAL_MODEL_PATH):
-#         s3 = boto3.client("s3")  # uses IAM Role or .aws/credentials
-#         s3.download_file(BUCKET, MODEL_KEY, LOCAL_MODEL_PATH)
+def download_model():
+    if not os.path.exists(LOCAL_MODEL_PATH):
+        s3 = boto3.client("s3")  # uses IAM Role or .aws/credentials
+        s3.download_file(BUCKET, MODEL_KEY, LOCAL_MODEL_PATH)
 
 def load_model(filename='model.pkl'):
     with open(filename, 'rb') as f:
@@ -37,5 +37,4 @@ filename = 'model.pkl'
 s3 = boto3.client('s3')
 s3.download_file('bucket-name', 'model.pkl', filename)
 model = load_model(filename)
-
 
