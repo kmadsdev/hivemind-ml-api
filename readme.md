@@ -1,0 +1,41 @@
+# HiveMind - Machine Learning API on AWS
+
+## Cloud configuration for the API:
+### Step 1 - Set up S3: 
+Upload the [latest machine learning model file](https://drive.google.com/file/d/1EzA-nuICumjeDTXCCW3rhzpE0Ic3YSzi/view?usp=sharing) to a Bucket on S3  
+
+```Note: the default bucket name on the code is 'hivemind-ml-models', and can be changed on app.py by changeing "BUCKET" to your bucket name.```
+### Step 2 - Create EC2 model: 
+- Application OS: Amazon Linux (Prefered)
+    - Architecture: 64-bit Arm (Prefered)
+- Intance type: t4g.small (or similar)
+- Network settings / Check all these:
+    - Allow SSH traffic from Anywhere (0.0.0.0:0)
+    - Allow HTTP traffic from the internet
+    - Allow HTTPS traffic from the internet
+### Step 3 - Run app:  
+- Inside EC2 (Amazon Linux)
+    - Install python, pip and git: 'sudo yum install -y python pip git'
+    - Install libs & requirements: 'pip install -r requirements.txt'
+    - Clones git repository: 'git clone <repository link>'
+    - Check for updates: 'git pull'
+    - Run app 'python3 hivemind-ml-api/app.py'
+
+---
+
+### Usage:
+- Url: 
+    ```http://<your-ec2-public-host>:<port>/predict?inputs=<inputs here>```
+- Inputs:
+<ol>
+    <li> &nbsp; int (> 0)</li>
+    <li> &nbsp; int (> 0)</li>
+    <li> &nbsp; int (0 or 1)</li>
+    <li> &nbsp; int (0 or 1)</li>
+    <li> &nbsp; int (0 or 1)</li>
+    <li> &nbsp; int (0 or 1)</li>
+    <li> &nbsp; int (0 or 1)</li>
+    <li> &nbsp; int (0 or 1)</li>
+    <li> &nbsp; float (<= 1, >= 0)</li>
+    <li> &nbsp; float (> 0)</li>
+</ol>

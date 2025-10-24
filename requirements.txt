@@ -1,7 +1,5 @@
-flask
-pydantic
 fastapi
+pydantic
 boto3
-pickle
 pathlib
 uvicorn
