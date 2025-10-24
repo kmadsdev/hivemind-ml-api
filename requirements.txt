@@ -4,3 +4,4 @@ fastapi
 boto3
 pickle
 pathlib
+uvicorn
