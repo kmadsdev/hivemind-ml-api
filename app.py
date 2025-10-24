@@ -33,8 +33,7 @@ def predict(data: InputData):
     y = model.predict(X)[0]
     return {"prediction": int(y)}
 
-filename = 'model.pkl'
 s3 = boto3.client('s3')
-s3.download_file('bucket-name', 'model.pkl', filename)
-model = load_model(filename)
+s3.download_file(BUCKET, MODEL_KEY, LOCAL_MODEL_PATH)
+model = load_model(LOCAL_MODEL_PATH)
 
