@@ -22,7 +22,7 @@ app = FastAPI()
 def home():
     return {"message": "API is Live"}
 
-@app.post("/predict")
+@app.get("/predict")
 def predict(inputs: str):  # 1,0,1,0.82317...
     X = [[float(x) if '.' in x else int(x) for x in inputs.split(',')]]
     y = model.predict(X)[0]
