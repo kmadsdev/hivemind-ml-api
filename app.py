@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import boto3, pickle, os
+from pathlib import Path
 
 BUCKET = "hivemind-ml-models"
 MODEL_KEY = "model.pkl"
@@ -33,7 +34,11 @@ def predict(data: InputData):
     y = model.predict(X)[0]
     return {"prediction": int(y)}
 
-s3 = boto3.client('s3')
-s3.download_file(BUCKET, MODEL_KEY, LOCAL_MODEL_PATH)
+if not Path(LOCAL_MODEL_PATH).is_file():
+    s3 = boto3.client('s3')
+    s3.download_file(BUCKET, MODEL_KEY, LOCAL_MODEL_PATH)
 model = load_model(LOCAL_MODEL_PATH)
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
