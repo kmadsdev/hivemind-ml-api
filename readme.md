@@ -1,13 +1,13 @@
 # HiveMind - Machine Learning API on AWS
-API for the [hivemind's machine learning repository](https://kmadsdev/hivemind-ml/).
-
+API for the HiveMind's Machine Learning repository -> [/kmadsdev/hivemind-ml](https://kmadsdev/hivemind-ml/).
 
 ## Cloud configuration for the API:
 ### Step 1 - Set up S3: 
 Upload the [latest machine learning model file](https://drive.google.com/file/d/1EzA-nuICumjeDTXCCW3rhzpE0Ic3YSzi/view?usp=sharing) to a Bucket on S3  
 
-```Note: the default bucket name on the code is 'hivemind-ml-models', and can be changed on app.py by changeing "BUCKET" to your bucket name.```
-### Step 2 - Create EC2 model: 
+```Note: the default bucket name on the code is 'hivemind-ml-models', and can be changed on app.py by changing the BUCKET variable.```
+
+### Step 2 - Set up EC2: 
 - Application OS: Amazon Linux (Prefered)
     - Architecture: 64-bit Arm (Prefered)
 - Intance type: t4g.small (or similar)
@@ -15,6 +15,7 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
     - Allow SSH traffic from Anywhere (0.0.0.0:0)
     - Allow HTTP traffic from the internet
     - Allow HTTPS traffic from the internet
+
 ### Step 3 - Run app:  
 - Inside EC2 (Amazon Linux)
     - Install python, pip and git: 'sudo yum install -y python pip git'
@@ -27,17 +28,17 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
 
 ### Usage:
 - Url: 
-    ```http://<your-ec2-public-host>:<port>/predict?inputs=<inputs here>```
+    ```http://<your-ec2-public-host>:8000/predict?inputs=<inputs here>```
 - Inputs:
     <ol>
-        <li> &nbsp; int </li>
-        <li> &nbsp; int </li>
-        <li> &nbsp; int (0 or 1) </li>
-        <li> &nbsp; int (0 or 1) </li>
-        <li> &nbsp; int (0 or 1) </li>
-        <li> &nbsp; int (0 or 1) </li>
-        <li> &nbsp; int (0 or 1) </li>
-        <li> &nbsp; int (0 or 1) </li>
-        <li> &nbsp; float (between 0.00001 and 1)   </li>
-        <li> &nbsp; float (between 0 and 999.99999) </li>
+    <li> &nbsp; int </li>
+    <li> &nbsp; int </li>
+    <li> &nbsp; int (0 or 1) </li>
+    <li> &nbsp; int (0 or 1) </li>
+    <li> &nbsp; int (0 or 1) </li>
+    <li> &nbsp; int (0 or 1) </li>
+    <li> &nbsp; int (0 or 1) </li>
+    <li> &nbsp; int (0 or 1) </li>
+    <li> &nbsp; float (between 0.00001 and 1)   </li>
+    <li> &nbsp; float (between 0 and 999.99999) </li>
     </ol>
