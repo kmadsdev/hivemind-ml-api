@@ -1,4 +1,6 @@
 # HiveMind - Machine Learning API on AWS
+API for the [hivemind's machine learning repository](https://kmadsdev/hivemind-ml/).
+
 
 ## Cloud configuration for the API:
 ### Step 1 - Set up S3: 
@@ -27,15 +29,15 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
 - Url: 
     ```http://<your-ec2-public-host>:<port>/predict?inputs=<inputs here>```
 - Inputs:
-<ol>
-    <li> &nbsp; int (> 0)</li>
-    <li> &nbsp; int (> 0)</li>
-    <li> &nbsp; int (0 or 1)</li>
-    <li> &nbsp; int (0 or 1)</li>
-    <li> &nbsp; int (0 or 1)</li>
-    <li> &nbsp; int (0 or 1)</li>
-    <li> &nbsp; int (0 or 1)</li>
-    <li> &nbsp; int (0 or 1)</li>
-    <li> &nbsp; float (<= 1, >= 0)</li>
-    <li> &nbsp; float (> 0)</li>
-</ol>
+    <ol>
+        <li> &nbsp; int </li>
+        <li> &nbsp; int </li>
+        <li> &nbsp; int (0 or 1) </li>
+        <li> &nbsp; int (0 or 1) </li>
+        <li> &nbsp; int (0 or 1) </li>
+        <li> &nbsp; int (0 or 1) </li>
+        <li> &nbsp; int (0 or 1) </li>
+        <li> &nbsp; int (0 or 1) </li>
+        <li> &nbsp; float (between 0.00001 and 1)   </li>
+        <li> &nbsp; float (between 0 and 999.99999) </li>
+    </ol>
