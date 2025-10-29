@@ -1,6 +1,11 @@
 # HiveMind - Machine Learning API on AWS
 API for the HiveMind's Machine Learning repository -> [/kmadsdev/hivemind-ml](https://kmadsdev/hivemind-ml/).
 
+### Stack
+- Language: Python
+- Frameworks/Tools: FastAPI, Uvicorn
+- Host: AWS (EC2 + S3)
+
 ## Cloud configuration for the API:
 ### Step 1 - Set up S3: 
 Upload the [latest machine learning model file](https://drive.google.com/file/d/1EzA-nuICumjeDTXCCW3rhzpE0Ic3YSzi/view?usp=sharing) to a Bucket on S3  
@@ -27,10 +32,13 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
 ---
 
 ### Usage:
-- Url: 
-    ```http://<your-ec2-public-host>:8000/predict?inputs=<inputs here>```
-- Inputs:
-    <ol>
+Url: ```http://<your-ec2-public-host>:8000/predict?inputs='<inputs-here>'```  
+- Note: inputs must be separated by commas (",") only, in the python's ```string``` format
+  
+Example: ```http://1337.101.404:8000/predict?inputs='200,450,1,0,1,1,0,1,0.72418,271.48123'```  
+
+Input list:
+<ol type="1">
     <li> &nbsp; int </li>
     <li> &nbsp; int </li>
     <li> &nbsp; int (0 or 1) </li>
@@ -41,4 +49,4 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
     <li> &nbsp; int (0 or 1) </li>
     <li> &nbsp; float (between 0.00001 and 1)   </li>
     <li> &nbsp; float (between 0 and 999.99999) </li>
-    </ol>
+</ol>
