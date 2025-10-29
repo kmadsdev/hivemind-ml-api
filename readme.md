@@ -29,12 +29,20 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
     - Check for updates: 'git pull'
     - Run app 'python3 hivemind-ml-api/app.py'
 
+<!-- Add step 4 -> tutorial on how to get the public host + set the port on EC2 -->
+
+<!--
+### step 4 - Setting up the host/endpoint
+-->
+
+
 ---
 
 ### Usage:
-Url: ```http://<your-ec2-public-host>:8000/predict?inputs='<inputs-here>'```  
-- Note: inputs must be separated by commas (",") only, in the python's ```string``` format
-  
+Url: ```http://<ec2-public-host>:<ec2-port>/predict?inputs='<inputs-here>'```  
+- Note: make sure you typed http, because it won't work if your try to use https  
+- Inputs must be in the python's ```string``` format and be separated by commas (",") only  
+
 Example: ```http://1337.101.404:8000/predict?inputs='200,450,1,0,1,1,0,1,0.72418,271.48123'```  
 
 Input list:
