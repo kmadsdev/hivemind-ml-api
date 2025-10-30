@@ -51,7 +51,7 @@ model = load_model(local_model_path)
 
 @app.get("/")
 def home():
-    return {"message": f"API Live with model: {local_model_path.name}"}
+    return {"message": "API is Live", "model": f"{local_model_path.name}"}
 
 
 @app.get("/predict")
