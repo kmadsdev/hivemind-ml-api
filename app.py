@@ -32,7 +32,8 @@ def download_model(model_key):
     s3 = boto3.client('s3')
     local_path = Path(model_key).name
     s3.download_file(BUCKET, model_key, str(local_path))
-    return local_path
+    return Path(local_path)
+
 
 
 def load_model(filename):
@@ -44,7 +45,7 @@ app = FastAPI()
 
 
 current_model_key = get_latest_model_key()
-local_model_path = download_model(current_model_key)
+local_model_path = Path(download_model(current_model_key))
 model = load_model(local_model_path)
 
 
