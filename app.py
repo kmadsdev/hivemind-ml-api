@@ -1,41 +1,77 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-import boto3, pickle, os
+import boto3
+from datetime import datetime
 from pathlib import Path
+from fastapi import FastAPI
+import pickle
 
 
-BUCKET = "hivemind-ml-models" # Chnage this to your bucket
-MODEL_KEY = "model.pkl" # Chanage this to your filename in the bucket
-LOCAL_MODEL_PATH = "model.pkl" # Path of the file in the bucket
-HOST = "0.0.0.0"
-PORT = 8000
+BUCKET = "hivemind-ml-models"
+HOST, PORT = "0.0.0.0", 8000
 
 
-def download_model():
-    if not Path(LOCAL_MODEL_PATH).is_file():
-        s3 = boto3.client('s3')
-        s3.download_file(BUCKET, MODEL_KEY, LOCAL_MODEL_PATH)
+def get_latest_model_key():
+    s3 = boto3.client('s3')
+    response = s3.list_objects_v2(Bucket=BUCKET)
+    pkl_files = [obj['Key'] for obj in response.get('Contents', []) if obj['Key'].endswith('.pkl')]
+    
+    if not pkl_files:
+        raise FileNotFoundError(f"Any .pkl files found in the bucket {BUCKET}")
 
-def load_model(filename='model.pkl'):
+    def extract_datetime(key):
+        try:
+            date_str = key.split('_')[-1].replace('.pkl', '')
+            date_str = key.split('_')[-2] + '_' + date_str
+            return datetime.strptime(date_str, "%d-%m-%Y_%H-%M-%S")
+        except Exception:
+            return datetime.min
+    
+    return max(pkl_files, key=extract_datetime)
+
+
+def download_model(model_key):
+    s3 = boto3.client('s3')
+    local_path = Path(model_key).name
+    s3.download_file(BUCKET, model_key, str(local_path))
+    return local_path
+
+
+def load_model(filename):
     with open(filename, 'rb') as f:
         return pickle.load(f)
 
 
 app = FastAPI()
 
+
+current_model_key = get_latest_model_key()
+local_model_path = download_model(current_model_key)
+model = load_model(local_model_path)
+
+
 @app.get("/")
 def home():
-    return {"message": "API is Live"}
+    return {"message": f"API Live with model: {local_model_path.name}"}
+
 
 @app.get("/predict")
-def predict(inputs: str): 
+def predict(inputs: str):
+    global model, current_model_key, local_model_path
+
+    # Check for a new model LIVE
+    latest_key = get_latest_model_key()
+    if latest_key != current_model_key:
+        print(f"New model detected: {latest_key}")
+        local_model_path = download_model(latest_key)
+        model = load_model(local_model_path)
+        current_model_key = latest_key
+
     X = [[float(x) if '.' in x else int(x) for x in inputs.split(',')]]
     y = model.predict(X)[0]
-    return {"prediction": int(y)}
 
-
-download_model()
-model = load_model(LOCAL_MODEL_PATH)
+    return {
+        "prediction": int(y),
+        "model": local_model_path.name
+    }
 
 
 if __name__ == "__main__":
