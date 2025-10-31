@@ -8,7 +8,7 @@ API for the HiveMind's Machine Learning repository -> [/kmadsdev/hivemind-ml](ht
 
 ## Cloud configuration for the API:
 ### Step 1 - Set up S3: 
-Upload the [latest machine learning model file](https://drive.google.com/file/d/1EzA-nuICumjeDTXCCW3rhzpE0Ic3YSzi/view?usp=sharing) to a Bucket on S3  
+Upload the [latest machine learning model file](https://drive.google.com/file/d/1snga__dyYhn12j72pIBRPNwQVMXnYJj_/view?usp=sharing) to a Bucket on S3  
 
 ```Note: the default bucket name on the code is 'hivemind-ml-models', and can be changed on app.py by changing the BUCKET variable.```
 
@@ -38,7 +38,7 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
 
 ---
 
-### Usage:
+## Usage:
 Url: ```http://<ec2-public-host>:<ec2-port>/predict?inputs='<inputs-here>'```  
 - Note: make sure you typed http, because it won't work if your try to use https  
 - Inputs must be in the python's ```string``` format and be separated by commas (",") only  
@@ -58,3 +58,23 @@ Input list:
     <li> &nbsp; float (between 0.00001 and 1)   </li>
     <li> &nbsp; float (between 0 and 999.99999) </li>
 </ol>
+
+## Update log
+<div>
+    <p>
+        <h3> ●  &nbsp;  27 oct 2025  &nbsp; | &nbsp;  New Machine Learning Model File  &nbsp; | &nbsp;  <a 
+            href="https://drive.google.com/file/d/1snga__dyYhn12j72pIBRPNwQVMXnYJj_/view?usp=sharing" style="text-decoration: none">< Go to file ></a>
+        </h3>
+        &nbsp; • &nbsp; Mode choosen: Logistic Regression <br>
+        &nbsp; • &nbsp; Size: 1.2KB <br>
+        &nbsp; • &nbsp; Accuracy: 97.94%
+    </p>
+    <p>
+        <h3> ●  &nbsp;  23 oct 2025  &nbsp; | &nbsp;  New Machine Learning Model File  &nbsp; | &nbsp;  <a 
+            href="https://drive.google.com/file/d/1_6TZ-_eiZw8-sx-nNc2-ykeS9aUogsVR/view?usp=sharing" style="text-decoration: none">< Go to file ></a>
+        </h3>
+        &nbsp; • &nbsp; Model choosen: Random Forest Classifier </strong> <br>
+        &nbsp; • &nbsp; Size: 756.3MB <br>
+        &nbsp; • &nbsp; Accuracy: 97.72%
+    </p>
+</div>
