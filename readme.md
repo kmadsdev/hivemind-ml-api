@@ -1,17 +1,17 @@
 # HiveMind - Machine Learning API on AWS
-API for the HiveMind's Machine Learning repository -> [/kmadsdev/hivemind-ml](https://kmadsdev/hivemind-ml/).
+API for the HiveMind's Machine Learning repository -> [/kmadsdev/hivemind-ml](https://github.com/kmadsdev/hivemind-ml/).
 
 ### Stack
 - Language: Python
-- Frameworks/Tools: FastAPI, Uvicorn
-- Host: AWS (EC2 + S3)
+- Frameworks/Tools: FastAPI, Uvicorn, Boto3
+- Deploy: AWS (EC2 + S3)
 
 ### Dependencies
 - FastAPI
-- Pydantic
 - Boto3
-- Pathlib
 - Uvicorn
+- Pydantic
+- Pathlib
 - Datetime
 
 ## Pipeline - AWS configuration for the API:
@@ -42,7 +42,6 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
 <!--
 ### step 4 - Setting up the host/endpoint
 -->
-
 
 ---
 
