@@ -6,6 +6,14 @@ API for the HiveMind's Machine Learning repository -> [/kmadsdev/hivemind-ml](ht
 - Frameworks/Tools: FastAPI, Uvicorn
 - Host: AWS (EC2 + S3)
 
+### Dependencies
+- FastAPI
+- Pydantic
+- Boto3
+- Pathlib
+- Uvicorn
+- Datetime
+
 ## Pipeline - AWS configuration for the API:
 ### Step 1 - Set up S3: 
 Upload the [latest machine learning model file](https://drive.google.com/file/d/1snga__dyYhn12j72pIBRPNwQVMXnYJj_/view?usp=sharing) to a Bucket on S3  
