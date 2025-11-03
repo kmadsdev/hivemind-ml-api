@@ -37,11 +37,19 @@ Upload the [latest machine learning model file](https://drive.google.com/file/d/
     - Check for updates: 'git pull'
     - Run app 'python3 hivemind-ml-api/app.py'
 
-<!-- Add step 4 -> tutorial on how to get the public host + set the port on EC2 -->
+### Step 4 - Set the host to public + set port to 8000
+On your EC2 instance go to `Network & Security` > `Security Groups`  
+Press `actions` menu then `Edit inbound rules` > `Add rule`:  
+- Type: Select the protocol (HTTP, HTTPS, Custom TCP, etc.)
+- Port range: set the port to `8000`
+- Source: `0.0.0.0/0`
+Then click `Save rules`
 
-<!--
-### step 4 - Setting up the host/endpoint
--->
+### Step 5 - Get the public IPv4 address:
+> EC2 > `Instances` > On the list select your Instance (click on Instance ID) > `Details` > `Instance summary` > `Public IPv4 address` > Copy the address
+  
+### After that you will be able to acess the model using this URL: http://<your-ec2-ipv4>:8000/   
+> Note: the url must be HTTP   
 
 ---
 
