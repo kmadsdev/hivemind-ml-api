@@ -2,7 +2,9 @@ import boto3
 from datetime import datetime
 from pathlib import Path
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import pickle
+
 
 
 BUCKET = "hivemind-ml-models"
@@ -42,6 +44,13 @@ def load_model(filename):
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or ["http://127.0.0.1:5500"] for more security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 current_model_key = get_latest_model_key()
